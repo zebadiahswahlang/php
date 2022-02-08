@@ -2,48 +2,22 @@
 <html>
     <head>
         <title>Registration Form</title>
-        <style>
-            body{
-                background-image:url("logo.jpg");
-                background-size: cover;
-            }
-            div{
-                position: relative;
-                padding-left: 120px;
-                padding-top: 130px;
-                color:white;
-            }
-            p{
-                font-size: 20px;
-            }
-            #button { 
-                background-color: purple; 
-                color: white; 
-                padding: 14px 20px; 
-                margin: 8px 0; 
-                border: none; 
-                cursor: pointer; 
-            } 
-            #button:hover { 
-                opacity: 0.8;
-            }
-        </style>
     </head>
     <body>
         <div>
-            <img src="redhatlogo.png" style="width:100px; height: 100px;">
-            <span style="font-size: 80px;">R3DHATS</span><br>
-            <h2>Administrator Details Form</h2>
-            <form action="savedb.php" method="post">
-                <p>First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="fn" pattern="[A-Za-z].{3,}" title="Must be Alpahbetic" required></p>
-                <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="ln" pattern="[A-Za-z].{3,}" title="Must be Alpahbetic" required></p>
-                <p>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="email" name="email" required></p>
-                <p>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="password" name="pw" required></p>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="button" value="Submit" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" id="button" name="reset">
+            <h2>Personal Details Form</h2>
+            <form action="create.php" method="post">
+                <fieldset>
+                    First Name:<br>
+                    <input type="text" name="fname"><br>
+                    Last Name:<br>
+                    <input type="text" name="lname"><br>
+                    Email:<br>
+                    <input type="email" name="email"><br>
+                    Password:<br>
+                    <input type="password" name="pass"><br><br>
+                    <input type="submit" value="Submit" name="submit">
+                </fieldset>
             </form>
         </div>
     </body>

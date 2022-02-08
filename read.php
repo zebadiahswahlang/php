@@ -1,8 +1,8 @@
 <?php
     include "connect.php";
 
-    $sql = "SELECT * FROM users";
-    $result = $conn->query($sql);
+    $query = "SELECT * FROM users";
+    $result = mysqli_query($conn,$query);
 
 ?>
 

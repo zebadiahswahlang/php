@@ -1,37 +1,19 @@
 <?php 
     include "connect.php";
 
-    if(isset($_POST['update'])){
-        $id = $_POST['id'];
-        $fn = $_POST['fn'];
-        $ln = $_POST['ln'];
-        $email = $_POST['email'];
-        $pw = $_POST['pw'];
-    
-        $sql = "UPDATE 'users' SET 'firstname' = '$fn','lastname' = '$ln','email' = '$email','password' = '$pw' WHERE 'id' = '$user_id'";
-        $result = $conn->query($sql);
-
-        if($result == TRUE)
-            echo "Record updated successfully";
-        else
-        echo "Error:" . $sql . "<br>" . $conn->error;
-
-        $conn->close();
-    }
-
     if(isset($_GET['id'])){
         $user_id = $_GET['id'];
 
-        $sql = "SELECT * FROM 'users' WHERE 'id' = '$user_id'";
-        $result = $conn->query($sql);
+        $query1 = "SELECT * FROM users WHERE id = '$user_id'";
+        $result = mysqli_query($conn,$query1);
 
         if($result->num_rows>0){
             while($row = $result->fetch_assoc()){
                 $id = $row['id'];
-                $fn = $row['firstname'];
-                $ln = $row['lastname'];
+                $fname = $row['firstname'];
+                $lname = $row['lastname'];
                 $email = $row['email'];
-                $pw = $row['password'];
+                $pass = $row['password'];
             }
         ?>
             <!DOCTYPE html>
@@ -44,22 +26,44 @@
                     <form action="" method="post">
                         <fieldset>
                             First Name:<br>
-                            <input type="text" name="fn" value="<?php echo $firstname; ?>">
+                            <input type="text" name="fname" value="<?php echo $fname; ?>">
                             <input type="hidden" name="user_id" value="<?php echo $id; ?>"><br>
                             Last Name:<br>
-                            <input type="text" name="ln" value="<?php echo $lastname; ?>"><br>
+                            <input type="text" name="lname" value="<?php echo $lname; ?>"><br>
                             Email:<br>
                             <input type="email" name="email" value="<?php echo $email; ?>"><br>
                             Password:<br>
-                            <input type="password" name="pw" value="<?php echo $password; ?>"><br><br>
-                            <input type="submit" value="update" name="update">
+                            <input type="password" name="pass" value="<?php echo $password; ?>"><br><br>
+                            <input type="submit" value="Update" name="update">
                         </fieldset>
                     </form>
                 </body>
             </html>
         <?php
         }
-        else
-            header('Location: view.php');
+        else{
+            header('Location: read.php');
+        }   
     }
+
+    if(isset($_POST['update'])){
+        //$uid = $_POST['id'];
+        $fn = $_POST['fname'];
+        $ln = $_POST['lname'];
+        $mail = $_POST['email'];
+        $pw = $_POST['pass'];
+    
+        $query = "UPDATE users SET firstname = '$fn', lastname = '$ln', email = '$mail', password = '$pw' WHERE id = '$user_id'";
+        $result = mysqli_query($conn,$query);
+
+        if($result == TRUE){
+            echo "Record updated successfully";
+            header('refresh:2; url=read.php');
+        }
+        else
+        echo "Error:" . $query . "<br>" . $conn->error;
+
+        $conn->close();
+    }
+
 ?>

@@ -2,19 +2,21 @@
     include "connect.php";
     
     if(isset($_POST['submit'])){
-        $fn = $_POST['fn'];
-        $ln = $_POST['ln'];
-        $email = $_POST['email'];
-        $pw = $_POST['pw'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $mail = $_POST['email'];
+        $pass = $_POST['pass'];
     
-        $sql = "INSERT INTO 'users' ('firstname','lastname','email','password') VALUES ('$fn','$ln','$email','$pw')";
-        $result = $conn->query($sql);
+        $query = "INSERT INTO users(firstname,lastname,email,password)VALUES('$fname','$lname','$mail','$pass')";
+        $result=mysqli_query($conn,$query);
 
-        if($result == TRUE)
+        if($result == TRUE){
             echo "New record created successfully";
+            echo "Click to View Record";
+            header('Location: read.php');
+        }
         else
-        echo "Error:" . $sql . "<br>" . $conn->error;
-
+            echo "Error:" . $query . "<br>" . $conn->error;
         $conn->close();
     }
 ?>
